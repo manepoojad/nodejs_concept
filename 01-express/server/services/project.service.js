@@ -16,4 +16,9 @@ module.exports = class Project {
     fsHelper.projectWriteFileData(data);
     return this;
   }
+
+  static readProjectList() {
+    const data = fsHelper.projectExtractFileData();
+    return data;
+  }
 };

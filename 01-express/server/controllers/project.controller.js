@@ -24,3 +24,12 @@ exports.postCreateProject = (req, res, next) => {
     next(error);
   }
 };
+
+exports.getProjectList = (req, res, next) => {
+  try {
+    const responseData = Project.readProjectList();
+    res.status(201).send(responseData);
+  } catch (error) {
+    next(error);
+  }
+};

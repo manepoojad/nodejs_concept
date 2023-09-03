@@ -6,4 +6,7 @@ const router = express.Router();
 
 router.post("/project", projectController.postCreateProject);
 
+router.get("/project", projectController.getProjectList);
+
+
 module.exports = router;
