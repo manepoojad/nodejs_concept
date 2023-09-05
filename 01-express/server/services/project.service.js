@@ -1,3 +1,4 @@
+const { deleteProjectById } = require("../controllers/project.controller");
 const fsHelper = require("../helper/fsHelper");
 const helperFunctions = require("../helper/helperFunctions");
 
@@ -51,5 +52,16 @@ module.exports = class Project {
     dataList[projectIndex] = this;
     fsHelper.projectWriteFileData(dataList);
     return this;
+  }
+
+  static deleteProject(id) {
+    const dataList = fsHelper.projectExtractFileData();
+    const filteredDataList = dataList.filter((item, index) => {
+      if (item.id != id) {
+        return true;
+      }
+    });
+    fsHelper.projectWriteFileData(filteredDataList);
+    return id;
   }
 };

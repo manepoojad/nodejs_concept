@@ -12,6 +12,9 @@ router.get("/project/:id", projectController.getProjectById);
 
 router.put("/project/:id", projectController.updateProjectById);
 
+router.delete("/project/:id", projectController.deleteProjectById);
+
+
 
 
 

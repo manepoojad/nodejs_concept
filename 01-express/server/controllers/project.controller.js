@@ -56,3 +56,16 @@ exports.updateProjectById = (req, res, next) => {
     next(error);
   }
 };
+
+exports.deleteProjectById = (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const responseData = Project.deleteProject(id);
+    res.status(201).send({
+      id: responseData,
+      message: "project deleted successfully",
+    });
+  } catch (error) {
+    next(error);
+  }
+};
