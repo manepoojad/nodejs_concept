@@ -21,4 +21,14 @@ module.exports = class Project {
     const data = fsHelper.projectExtractFileData();
     return data;
   }
+
+  static readProjectById(id) {
+    const data = fsHelper.projectExtractFileData();
+    const projectData = data.find((item, index) => {
+      if (item.id == id) {
+        return true;
+      }
+    });
+    return projectData;
+  }
 };

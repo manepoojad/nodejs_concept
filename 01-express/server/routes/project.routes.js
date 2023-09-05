@@ -8,5 +8,9 @@ router.post("/project", projectController.postCreateProject);
 
 router.get("/project", projectController.getProjectList);
 
+router.get("/project/:id", projectController.getProjectById);
+
+
+
 
 module.exports = router;

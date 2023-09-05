@@ -33,3 +33,13 @@ exports.getProjectList = (req, res, next) => {
     next(error);
   }
 };
+
+exports.getProjectById = (req, res, next) => {
+  try {
+    const id=req.params.id
+    const responseData = Project.readProjectById(id);
+   res.status(201).send(responseData);
+  } catch (error) {
+    next(error);
+  }
+};
