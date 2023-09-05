@@ -10,6 +10,8 @@ router.get("/project", projectController.getProjectList);
 
 router.get("/project/:id", projectController.getProjectById);
 
+router.put("/project/:id", projectController.updateProjectById);
+
 
 
 

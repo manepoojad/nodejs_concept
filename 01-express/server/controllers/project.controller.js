@@ -36,9 +36,22 @@ exports.getProjectList = (req, res, next) => {
 
 exports.getProjectById = (req, res, next) => {
   try {
-    const id=req.params.id
+    const id = req.params.id;
     const responseData = Project.readProjectById(id);
-   res.status(201).send(responseData);
+    res.status(201).send(responseData);
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updateProjectById = (req, res, next) => {
+  try {
+    const id = req.params.id;
+    const { title, description } = req.body;
+    const reqObject = { title, description };
+    const projectObject = new Project(reqObject, id);
+    const responseData = projectObject.updateProject();
+    res.status(201).send(responseData);
   } catch (error) {
     next(error);
   }
