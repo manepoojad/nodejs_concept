@@ -1,4 +1,3 @@
-const { deleteProjectById } = require("../controllers/project.controller");
 const fsHelper = require("../helper/fsHelper");
 const helperFunctions = require("../helper/helperFunctions");
 
@@ -9,6 +8,9 @@ module.exports = class Project {
     this.modifiedOn = id ? new Date().toISOString() : null;
     this.title = reqObject.title;
     this.description = reqObject.description;
+    this.date = reqObject.date;
+    this.technology = reqObject.technology;
+    this.library = reqObject.library;
   }
 
   createProject() {

@@ -2,7 +2,7 @@ const Project = require("../services/project.service");
 
 exports.postCreateProject = (req, res, next) => {
   try {
-    const { title, description } = req.body;
+    const { title, description, date, technology, library } = req.body;
 
     if (!title || !description) {
       throw {
@@ -11,7 +11,7 @@ exports.postCreateProject = (req, res, next) => {
       };
     }
 
-    const reqObject = { title, description };
+    const reqObject = { title, description,date, technology, library };
     const projectObject = new Project(reqObject);
 
     const resObject = projectObject.createProject();
@@ -47,8 +47,8 @@ exports.getProjectById = (req, res, next) => {
 exports.updateProjectById = (req, res, next) => {
   try {
     const id = req.params.id;
-    const { title, description } = req.body;
-    const reqObject = { title, description };
+    const { title, description,date, technology, library } = req.body;
+    const reqObject = { title, description,date, technology, library };
     const projectObject = new Project(reqObject, id);
     const responseData = projectObject.updateProject();
     res.status(201).send(responseData);
