@@ -6,9 +6,12 @@ exports.createProduct = async (req, res, next) => {
     const reqObj = { name, description, price };
 
     const productObj = new Product(reqObj);
-    const data = await productObj.createProduct();
+    const resObj = await productObj.createProduct();
 
-    await res.status(200).send("resObj");
+    await res.status(200).send({
+      data: resObj,
+      message: "Project Created Successfully",
+    });
   } catch (error) {
     next(error);
   }
@@ -33,21 +36,28 @@ exports.retrieveProductById = async (req, res, next) => {
   }
 };
 
-exports.updateProduct = async (req, res, next) => {
+exports.deleteProduct = async (req, res) => {
   try {
-    await res.status(200).send("resObj");
+    const productId = req.params.id;
+    const result = await Product.deleteProduct(productId);
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Product not found" });
+    }
+    return res.status(204).json({ message: "Product deleted successfully" }); // Successful deletion, no content response
   } catch (error) {
-    next(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };
 
-exports.deleteProduct = async (req, res, next) => {
+exports.updateProduct = async (req, res) => {
   try {
-    let reqId = req.params.id;
-    await res
-      .status(200)
-      .send({ id: "resObj", message: "task deleted succesfully" });
+    const productId = req.params.id;
+    const { name, description, price } = req.body; // Assuming the request body contains updated data
+    const reqObj = { name, description, price };
+    const productObj = new Product(reqObj);
+    await productObj.updateProduct(productId);
+    return res.status(200).json({ message: "Product updated successfully" });
   } catch (error) {
-    next(error);
+    return res.status(500).json({ error: "Internal server error" });
   }
 };

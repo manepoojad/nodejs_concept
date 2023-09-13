@@ -33,9 +33,37 @@ module.exports = class Product {
     return rows;
   }
 
-  async updateProduct() {}
+  async updateProduct(productId) {
+    try {
+      const query =
+        "UPDATE products SET name = ?, price = ?, description = ? WHERE id = ?";
+      const [result] = await db.execute(query, [
+        this.name,
+        this.price,
+        this.description,
+        productId,
+      ]);
 
-  static deleteProduct(reqId) {
-    return reqId;
+      if (result.affectedRows === 0) {
+        throw({
+          statusCode: 404,
+          message: "Something went wrong."
+        })
+      }
+
+      return result;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  static async deleteProduct(productId) {
+    try {
+      const query = "DELETE FROM products WHERE id = ?";
+      const [result] = await db.execute(query, [productId]);
+      return result;
+    } catch (error) {
+      throw error;
+    }
   }
 };
