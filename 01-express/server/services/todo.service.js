@@ -1,7 +1,7 @@
 const fsHelper = require("../helper/fsHelper");
 const helperFunctions = require("../helper/helperFunctions");
 
-module.exports = class Project {
+module.exports = class Todo {
   constructor(reqObject, id) {
     this.id = id ? id : helperFunctions.getUniqueId();
     this.createdOn = id ? null : new Date().toISOString();
@@ -13,57 +13,57 @@ module.exports = class Project {
     this.library = reqObject.library;
   }
 
-  createProject() {
-    const dataList = fsHelper.projectExtractFileData();
+  createTodo() {
+    const dataList = fsHelper.todoExtractFileData();
     dataList.push(this);
-    fsHelper.projectWriteFileData(dataList);
+    fsHelper.todoWriteFileData(dataList);
     return this;
   }
 
-  static readProjectList() {
-    const dataList = fsHelper.projectExtractFileData();
+  static readTodoList() {
+    const dataList = fsHelper.todoExtractFileData();
     return dataList;
   }
 
-  static readProjectById(id) {
-    const dataList = fsHelper.projectExtractFileData();
-    const projectData = dataList.find((item, index) => {
+  static readTodoById(id) {
+    const dataList = fsHelper.todoExtractFileData();
+    const todoData = dataList.find((item, index) => {
       if (item.id == id) {
         return true;
       }
     });
-    return projectData;
+    return todoData;
   }
 
-  updateProject() {
-    const dataList = fsHelper.projectExtractFileData();
-    const projectIndex = dataList.findIndex((item, index) => {
+  updateTodo() {
+    const dataList = fsHelper.todoExtractFileData();
+    const todoIndex = dataList.findIndex((item, index) => {
       if (item.id == this.id) {
         return true;
       }
     });
 
-    if (projectIndex == -1) {
+    if (todoIndex == -1) {
       throw {
         statusCode: 404,
-        message: "project not found",
+        message: "todo not found",
       };
     }
-    const oldProjectData = dataList[projectIndex];
-    this.createdOn = oldProjectData.createdOn;
-    dataList[projectIndex] = this;
-    fsHelper.projectWriteFileData(dataList);
+    const oldTodoData = dataList[todoIndex];
+    this.createdOn = oldTodoData.createdOn;
+    dataList[todoIndex] = this;
+    fsHelper.todoWriteFileData(dataList);
     return this;
   }
 
-  static deleteProject(id) {
-    const dataList = fsHelper.projectExtractFileData();
+  static deleteTodo(id) {
+    const dataList = fsHelper.todoExtractFileData();
     const filteredDataList = dataList.filter((item, index) => {
       if (item.id != id) {
         return true;
       }
     });
-    fsHelper.projectWriteFileData(filteredDataList);
+    fsHelper.todoWriteFileData(filteredDataList);
     return id;
   }
 };

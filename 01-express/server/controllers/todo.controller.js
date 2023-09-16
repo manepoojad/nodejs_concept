@@ -1,69 +1,69 @@
-const Project = require("../services/project.service");
+const Todo = require("../services/todo.service");
 
-exports.postCreateProject = (req, res, next) => {
+exports.postCreateTodo = (req, res, next) => {
   try {
     const { title, description, date, technology, library } = req.body;
 
     if (!title || !description) {
       throw {
         statusCode: 400,
-        message: "Please provide all project detail",
+        message: "Please provide all todo detail",
       };
     }
 
     const reqObject = { title, description,date, technology, library };
-    const projectObject = new Project(reqObject);
+    const todoObject = new Todo(reqObject);
 
-    const resObject = projectObject.createProject();
+    const resObject = todoObject.createTodo();
 
     res.status(201).send({
       data: resObject,
-      message: "Project created successfully",
+      message: "Todo created successfully",
     });
   } catch (error) {
     next(error);
   }
 };
 
-exports.getProjectList = (req, res, next) => {
+exports.getTodoList = (req, res, next) => {
   try {
-    const responseData = Project.readProjectList();
+    const responseData = Todo.readTodoList();
     res.status(201).send(responseData);
   } catch (error) {
     next(error);
   }
 };
 
-exports.getProjectById = (req, res, next) => {
+exports.getTodoById = (req, res, next) => {
   try {
     const id = req.params.id;
-    const responseData = Project.readProjectById(id);
+    const responseData = Todo.readTodoById(id);
     res.status(201).send(responseData);
   } catch (error) {
     next(error);
   }
 };
 
-exports.updateProjectById = (req, res, next) => {
+exports.updateTodoById = (req, res, next) => {
   try {
     const id = req.params.id;
     const { title, description,date, technology, library } = req.body;
     const reqObject = { title, description,date, technology, library };
-    const projectObject = new Project(reqObject, id);
-    const responseData = projectObject.updateProject();
+    const todoObject = new Todo(reqObject, id);
+    const responseData = todoObject.updateTodo();
     res.status(201).send(responseData);
   } catch (error) {
     next(error);
   }
 };
 
-exports.deleteProjectById = (req, res, next) => {
+exports.deleteTodoById = (req, res, next) => {
   try {
     const id = req.params.id;
-    const responseData = Project.deleteProject(id);
+    const responseData = Todo.deleteTodo(id);
     res.status(201).send({
       id: responseData,
-      message: "project deleted successfully",
+      message: "todo deleted successfully",
     });
   } catch (error) {
     next(error);

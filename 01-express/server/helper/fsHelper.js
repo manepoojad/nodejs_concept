@@ -1,24 +1,24 @@
 const fs = require("fs");
 const path = require("path");
 
-const projectDataFilePath = path.join(
+const todoDataFilePath = path.join(
   process.cwd(),
   "./server/utils/database",
-  "projectData.json"
+  "todoData.json"
 );
 
-const projectExtractFileData = () => {
-  const jsonFileData = fs.readFileSync(projectDataFilePath);
+const todoExtractFileData = () => {
+  const jsonFileData = fs.readFileSync(todoDataFilePath);
   const fileData = JSON.parse(jsonFileData);
   return fileData;
 };
 
-const projectWriteFileData = (data) => {
+const todoWriteFileData = (data) => {
   const stringifyData = JSON.stringify(data);
-  fs.writeFileSync(projectDataFilePath, stringifyData);
+  fs.writeFileSync(todoDataFilePath, stringifyData);
 };
 
 module.exports = {
-  projectExtractFileData,
-  projectWriteFileData,
+  todoExtractFileData,
+  todoWriteFileData,
 };

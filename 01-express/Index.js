@@ -1,6 +1,6 @@
 const express = require("express");
 const bodyParser = require("body-parser");
-const projectRoutes = require("./server/routes/project.routes");
+const todoRoutes = require("./server/routes/todo.routes");
 const swaggerUi = require("swagger-ui-express");
 const swaggerDoc = require("./server/documentation/swagger");
 const baseUrl = require("./server/helper/config/baseurlConfig");
@@ -8,7 +8,7 @@ const baseUrl = require("./server/helper/config/baseurlConfig");
 const app = express();
 
 app.use(bodyParser.json());
-app.use("/", projectRoutes); // App Main Routes
+app.use("/", todoRoutes); // App Main Routes
 
 app.get("/", (req, res) => {
   res.send("Hello World!, This is Pooja.");

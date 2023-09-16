@@ -1,6 +1,6 @@
 // // swagger defination
-exports.projectDefinition = {
-  projectObject: {
+exports.todoDefinition = {
+  todoObject: {
     properties: {
       title: {
         type: "string",
@@ -51,7 +51,7 @@ exports.projectDefinition = {
       },
     },
   },
-  updateProjectObj: {
+  updateTodoObj: {
     properties: {
       id: {
         type: "string",
@@ -92,59 +92,59 @@ exports.projectDefinition = {
 // library: { redux: false, saga: false, numpy: false, pandas: false }
 
 //  // swagger paths
-exports.projectPath = {
-  "/project": {
+exports.todoPath = {
+  "/todo": {
     post: {
-      description: "Create new project.",
-      operationId: "createProject",
-      tags: ["Project (Learning)"],
+      description: "Create new todo.",
+      operationId: "createTodo",
+      tags: ["Todo (Learning)"],
       // security: [{ JWT: [] }],
-      summary: "Create a new Project",
+      summary: "Create a new Todo",
       parameters: [
         {
-          name: "Project",
+          name: "Todo",
           required: true,
           in: "body",
           type: "object",
-          description: "Project information.",
+          description: "Todo information.",
           schema: {
-            $ref: `#/definitions/projectObject`,
+            $ref: `#/definitions/todoObject`,
           },
         },
       ],
       responses: {
         200: {
-          description: "new Project created successfully.",
+          description: "new Todo created successfully.",
           // schema: {
-          //     $ref: "#/definitions/projectObject"
+          //     $ref: "#/definitions/todoObject"
           // }
         },
       },
     },
     get: {
-      description: "Retrieve Project Project list.",
-      operationId: "retrieveProjectList",
-      tags: ["Project (Learning)"],
+      description: "Retrieve Todo Todo list.",
+      operationId: "retrieveTodoList",
+      tags: ["Todo (Learning)"],
       // security: [{ JWT: [] }],
-      summary: "Retrieve Project list.",
+      summary: "Retrieve Todo list.",
       parameters: [],
       responses: {
         200: {
-          description: "Retrieve Project list successfully.",
+          description: "Retrieve Todo list successfully.",
           // schema: {
-          //     $ref: "#/definitions/projectObject"
+          //     $ref: "#/definitions/todoObject"
           // }
         },
       },
     },
   },
-  "/project/{id}": {
+  "/todo/{id}": {
     get: {
-      description: "Retrieve specific Project Project.",
-      operationId: "retrieveProject",
-      tags: ["Project (Learning)"],
+      description: "Retrieve specific Todo Todo.",
+      operationId: "retrieveTodo",
+      tags: ["Todo (Learning)"],
       // security: [{ JWT: [] }],
-      summary: "Retrieve Project.",
+      summary: "Retrieve Todo.",
       parameters: [
         {
           name: "id",
@@ -155,19 +155,19 @@ exports.projectPath = {
       ],
       responses: {
         200: {
-          description: "Retrieve specific Project successfully.",
+          description: "Retrieve specific Todo successfully.",
           // schema: {
-          //     $ref: "#/definitions/projectObject"
+          //     $ref: "#/definitions/todoObject"
           // }
         },
       },
     },
     put: {
-      description: "Update project Project.",
-      operationId: "updateProject",
-      tags: ["Project (Learning)"],
+      description: "Update todo Todo.",
+      operationId: "updateTodo",
+      tags: ["Todo (Learning)"],
       // security: [{ JWT: [] }],
-      summary: "Update Project",
+      summary: "Update Todo",
       parameters: [
         {
           name: "id",
@@ -176,31 +176,31 @@ exports.projectPath = {
           type: "string",
         },
         {
-          name: "Project",
+          name: "Todo",
           required: true,
           in: "body",
           type: "object",
-          description: "Project information.",
+          description: "Todo information.",
           schema: {
-            $ref: `#/definitions/updateProjectObj`,
+            $ref: `#/definitions/updateTodoObj`,
           },
         },
       ],
       responses: {
         200: {
-          description: "Project Updated successfully.",
+          description: "Todo Updated successfully.",
           // schema: {
-          //     $ref: "#/definitions/projectObject"
+          //     $ref: "#/definitions/todoObject"
           // }
         },
       },
     },
     delete: {
-      description: "Project Project deleted successfully.",
-      operationId: "deleteProject",
-      tags: ["Project (Learning)"],
+      description: "Todo Todo deleted successfully.",
+      operationId: "deleteTodo",
+      tags: ["Todo (Learning)"],
       // security: [{ JWT: [] }],
-      summary: "Delete Project.",
+      summary: "Delete Todo.",
       parameters: [
         {
           name: "id",
@@ -211,9 +211,9 @@ exports.projectPath = {
       ],
       responses: {
         200: {
-          description: "Delete specific Project successfully.",
+          description: "Delete specific Todo successfully.",
           // schema: {
-          //     $ref: "#/definitions/projectObject"
+          //     $ref: "#/definitions/todoObject"
           // }
         },
       },

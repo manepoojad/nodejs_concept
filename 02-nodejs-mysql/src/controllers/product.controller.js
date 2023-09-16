@@ -10,7 +10,7 @@ exports.createProduct = async (req, res, next) => {
 
     await res.status(200).send({
       data: resObj,
-      message: "Project Created Successfully",
+      message: "Todo Created Successfully",
     });
   } catch (error) {
     next(error);

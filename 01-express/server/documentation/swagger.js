@@ -1,6 +1,6 @@
 const baseUrl = require("../helper/config/baseurlConfig");
 
-const projectDoc = require("./content/project.doc");
+const todoDoc = require("./content/todo.doc");
 
 // // swagger -----------------------------------------------------------------
 module.exports = {
@@ -57,10 +57,10 @@ module.exports = {
   },
   // // definitions -----------------------------------------------------------------
   definitions: {
-    ...projectDoc.projectDefinition,
+    ...todoDoc.todoDefinition,
   },
   // // paths ---------------------------------------------------------------------
   paths: {
-    ...projectDoc.projectPath,
+    ...todoDoc.todoPath,
   },
 };
