@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const todoRoutes = require("./server/routes/todo.routes");
 const swaggerUi = require("swagger-ui-express");
@@ -7,8 +8,11 @@ const baseUrl = require("./server/helper/config/baseurlConfig");
 
 const app = express();
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use("/", todoRoutes); // App Main Routes
+
+
 
 app.get("/", (req, res) => {
   res.send("Hello World!, This is Pooja.");

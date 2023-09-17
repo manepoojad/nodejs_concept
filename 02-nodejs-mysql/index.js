@@ -3,6 +3,7 @@
 // nodejs external library---------------------------------------------
 const express = require("express");
 const bodyParser = require("body-parser");
+const cors = require("cors");
 
 // swagger -----------------------------------------------------------
 const swaggerUi = require("swagger-ui-express");
@@ -14,10 +15,9 @@ const routes = require("./src/routes/routes");
 // define constants -----------------------------------------------------
 const app = express();
 
-
 app.use(bodyParser.json()); // application/json
 
-
+app.use(cors());
 // set static folder ==> public folder---------------------------------------
 
 // Route --------------------------------------------------------------------------
